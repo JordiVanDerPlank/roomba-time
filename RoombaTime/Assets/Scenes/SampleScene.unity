@@ -221,8 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0667b84dfbd2edd44ba0dfa85961831c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeNeededToClean: 0
-  timeCleaned: 0
 --- !u!58 &169532642
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +231,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
