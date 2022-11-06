@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Roomba").transform;
         transform.position = player.position;
     }
 

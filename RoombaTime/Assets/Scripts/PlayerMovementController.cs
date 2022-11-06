@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
-//using UnityEngine.LowLevel.PlayerLoop;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -22,15 +19,28 @@ public class PlayerMovementController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
     }
 
+    [SerializeField] Vector2 moveDirection;
     private void Update()
     {
-        //roombaSprite.rotation = movement;
-        Vector2 moveDirection = rb2D.velocity;
+        //Vector2 moveDirection = rb2D.velocity;
+        //if (moveDirection != Vector2.zero)
+        //{
+        //    float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        //    roombaSprite.rotation = Quaternion.Slerp(roombaSprite.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward), rotationSpeed * Time.deltaTime);
+        //}
+
+        moveDirection = rb2D.velocity;
         if (moveDirection != Vector2.zero)
         {
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            roombaSprite.rotation = Quaternion.Lerp(roombaSprite.rotation, Quaternion.AngleAxis(angle - 90, Vector3.forward), rotationSpeed * Time.deltaTime);
+            ChangeAngle(angle);
         }
+    }
+
+    void ChangeAngle(float angle)
+    {
+        if (!DOTween.IsTweening(roombaSprite))
+            roombaSprite.DORotateQuaternion(Quaternion.AngleAxis(angle - 90, Vector3.forward), 0.35f).SetEase(Ease.InExpo);
     }
 
     void FixedUpdate()
