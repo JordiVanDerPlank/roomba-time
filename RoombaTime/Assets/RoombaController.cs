@@ -56,5 +56,6 @@ public class RoombaController : MonoBehaviour
     public void AddTrashVolume(float percentage)
     {
         percentageFull += percentage;
+        GameManager.Instance.AddScore((int)(percentage * 10));
     }
 }
